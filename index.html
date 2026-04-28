@@ -1,72 +1,254 @@
-# -<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>세이신 운영 대시보드</title>
+<title>SEISIN 운영 대시보드</title>
 
 <style>
-body {font-family: Arial; background:#f5f6fa; margin:0;}
-header {background:#1e3a8a; color:white; padding:15px; font-size:20px;}
-.container {display:grid; grid-template-columns: 1fr 2fr; gap:15px; padding:15px;}
-.card {background:white; padding:15px; border-radius:10px;}
-h2 {margin:0 0 10px 0;}
-iframe {width:100%; border:none;}
-.tabs button {margin-right:5px; padding:5px 10px;}
+* { box-sizing: border-box; }
+body {
+  margin:0;
+  font-family: Arial, "Noto Sans KR", sans-serif;
+  background:#eef2f7;
+  color:#111827;
+}
+
+header {
+  background:#0f2f5f;
+  color:white;
+  padding:18px 28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+header h1 {
+  margin:0;
+  font-size:22px;
+}
+
+nav a {
+  color:white;
+  margin-left:22px;
+  text-decoration:none;
+  font-weight:bold;
+  font-size:14px;
+}
+
+.wrapper {
+  padding:24px;
+  max-width:1500px;
+  margin:auto;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns: 1.1fr 1.8fr;
+  gap:20px;
+}
+
+.bottom-grid {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:20px;
+  margin-top:20px;
+}
+
+.card {
+  background:white;
+  border-radius:16px;
+  padding:20px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
+}
+
+.card h2 {
+  margin:0 0 16px;
+  font-size:20px;
+  color:#0f2f5f;
+}
+
+.notice li {
+  margin-bottom:12px;
+  line-height:1.5;
+}
+
+.kpi {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.kpi-box {
+  background:#f3f6fb;
+  padding:16px;
+  border-radius:12px;
+  text-align:center;
+}
+
+.kpi-box strong {
+  display:block;
+  font-size:24px;
+  color:#0f2f5f;
+  margin-top:6px;
+}
+
+.btns {
+  display:flex;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+button, .link-btn {
+  background:#2563eb;
+  color:white;
+  border:none;
+  padding:10px 16px;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-block;
+}
+
+.sub-btn {
+  background:#e5e7eb;
+  color:#111827;
+}
+
+iframe {
+  width:100%;
+  border:1px solid #e5e7eb;
+  border-radius:12px;
+  background:white;
+}
+
+.small-frame {
+  height:320px;
+}
+
+.large-frame {
+  height:560px;
+}
+
+.quick a {
+  display:block;
+  background:#f3f6fb;
+  padding:13px;
+  border-radius:10px;
+  margin-bottom:10px;
+  text-decoration:none;
+  color:#111827;
+  font-weight:bold;
+}
+
+footer {
+  text-align:center;
+  padding:18px;
+  color:#6b7280;
+  font-size:13px;
+}
 </style>
 
 <script>
-function showTab(tab){
-  document.getElementById('osaka').style.display = tab==='osaka'?'block':'none';
-  document.getElementById('kyushu').style.display = tab==='kyushu'?'block':'none';
+function showSchedule(type){
+  document.getElementById("osaka").style.display = type === "osaka" ? "block" : "none";
+  document.getElementById("kyushu").style.display = type === "kyushu" ? "block" : "none";
 }
 </script>
-
 </head>
 
 <body>
 
-<header>세이신 운영 대시보드</header>
+<header>
+  <h1>SEISIN 운영 대시보드</h1>
+  <nav>
+    <a href="#notice">공지사항</a>
+    <a href="#schedule">일정표</a>
+    <a href="#sales">실적표</a>
+    <a href="#booking">모객현황</a>
+  </nav>
+</header>
 
-<div class="container">
+<div class="wrapper">
 
-  <div class="card">
-    <h2>공지사항</h2>
-    <iframe src="https://docs.google.com/spreadsheets/d/1AM14eNT1pL7A20fDiaBvXoXeeslm5ALIKkU5Z6R4ihs/edit?gid=0#gid=0ㅍ" height="300"></iframe>
+  <div class="grid">
+
+    <section class="card" id="notice">
+      <h2>공지사항</h2>
+      <ul class="notice">
+        <li>4월 실적 마감: 4월 30일까지 입력</li>
+        <li>5월 연휴기간 업무 일정 확인</li>
+        <li>오사카 / 큐슈 일정표 최신화 필요</li>
+        <li>모객현황은 출발일 기준으로 매일 확인</li>
+      </ul>
+
+      <div class="kpi">
+        <div class="kpi-box">
+          총 매출
+          <strong>¥1.25B</strong>
+        </div>
+        <div class="kpi-box">
+          총 이익
+          <strong>¥142M</strong>
+        </div>
+        <div class="kpi-box">
+          총 인원
+          <strong>63,182명</strong>
+        </div>
+        <div class="kpi-box">
+          단체수
+          <strong>2,938건</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="schedule">
+      <h2>일정표</h2>
+
+      <div class="btns">
+        <button onclick="showSchedule('osaka')">오사카 일정표</button>
+        <button class="sub-btn" onclick="showSchedule('kyushu')">큐슈 일정표</button>
+      </div>
+
+      <div id="osaka">
+        <iframe class="large-frame" src="오사카시트URL"></iframe>
+      </div>
+
+      <div id="kyushu" style="display:none;">
+        <iframe class="large-frame" src="큐슈시트URL"></iframe>
+      </div>
+    </section>
+
   </div>
 
-  <div class="card">
-    <h2>일정표</h2>
+  <div class="bottom-grid">
 
-    <div class="tabs">
-      <button onclick="showTab('osaka')">오사카</button>
-      <button onclick="showTab('kyushu')">큐슈</button>
-    </div>
+    <section class="card" id="sales">
+      <h2>실적표</h2>
+      <iframe class="small-frame" src="실적시트URL"></iframe>
+    </section>
 
-    <div id="osaka">
-      <iframe src="https://docs.google.com/spreadsheets/d/1_9Yk87noVzaUfhNcp91p5Mc3LXpOJILq/edit?gid=1976745365#gid=1976745365" height="600"></iframe>
-    </div>
+    <section class="card" id="booking">
+      <h2>모객현황</h2>
+      <iframe class="small-frame" src="모객시트URL"></iframe>
+    </section>
 
-    <div id="kyushu" style="display:none;">
-      <iframe src="https://docs.google.com/spreadsheets/d/18tUIu7JdoyQ-mnP37xWQTwzJCoP4B_SN/edit?gid=1684846876#gid=1684846876" height="600"></iframe>
-    </div>
+    <section class="card quick">
+      <h2>바로가기</h2>
+      <a href="https://docs.google.com/spreadsheets/d/1AM14eNT1pL7A20fDiaBvXoXeeslm5ALIKkU5Z6R4ihs/edit?gid=0#gid=0" target="_blank">공지사항 시트 열기</a>
+      <a href="https://docs.google.com/spreadsheets/d/1_9Yk87noVzaUfhNcp91p5Mc3LXpOJILq/edit?gid=1976745365#gid=1976745365" target="_blank">오사카 일정표 열기</a>
+      <a href="https://docs.google.com/spreadsheets/d/18tUIu7JdoyQ-mnP37xWQTwzJCoP4B_SN/edit?gid=1684846876#gid=1684846876" target="_blank">큐슈 일정표 열기</a>
+      <a href="https://docs.google.com/spreadsheets/d/1LKbsLQ85a8EgD3yXF5E3DLLqQHBthtF6wlxPPy_z4Wk/edit?gid=1814746152#gid=1814746152" target="_blank">실적표 열기</a>
+      <a href="https://docs.google.com/spreadsheets/d/1MEY5jqW_EYqAx7lG_qCCn52UBJh8UQeRd2BKM9kZGPs/edit?gid=600363142#gid=600363142" target="_blank">모객현황 열기</a>
+    </section>
 
   </div>
 
 </div>
 
-<div class="container">
-
-  <div class="card">
-    <h2>실적표</h2>
-    <iframe src="https://docs.google.com/spreadsheets/d/1LKbsLQ85a8EgD3yXF5E3DLLqQHBthtF6wlxPPy_z4Wk/edit?gid=1814746152#gid=1814746152L" height="400"></iframe>
-  </div>
-
-  <div class="card">
-    <h2>모객현황</h2>
-    <iframe src="https://docs.google.com/spreadsheets/d/1MEY5jqW_EYqAx7lG_qCCn52UBJh8UQeRd2BKM9kZGPs/edit?gid=600363142#gid=600363142" height="400"></iframe>
-  </div>
-
-</div>
+<footer>
+  © 2026 SEISIN. Internal Dashboard.
+</footer>
 
 </body>
 </html>
