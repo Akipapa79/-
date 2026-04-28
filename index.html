@@ -1,313 +1,126 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>SEISIN Dashboard</title>
+    <meta charset="UTF-8">
+    <title>SEISHIN Group Operation Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { --main-blue: #1a4ba0; --accent-gold: #b2945e; --bg-gray: #f4f7f9; }
+        body { margin: 0; font-family: 'Noto Sans KR', sans-serif; background: var(--bg-gray); color: #333; }
+        
+        /* 헤더 디자인 */
+        header { background: #fff; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--main-blue); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .logo { display: flex; align-items: center; gap: 15px; font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 600; color: var(--main-blue); }
+        .logo i { font-size: 30px; color: var(--accent-gold); }
 
-<style>
-* { box-sizing: border-box; }
+        /* 메인 레이아웃 */
+        .container { display: grid; grid-template-columns: 320px 1fr 300px; gap: 20px; padding: 25px; max-width: 1600px; margin: 0 auto; }
+        .card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        h3 { font-size: 18px; margin-top: 0; display: flex; align-items: center; gap: 8px; color: var(--main-blue); border-bottom: 1px solid #eee; padding-bottom: 10px; }
 
-body {
-  margin:0;
-  font-family: "Segoe UI", Arial;
-  background: linear-gradient(135deg,#eef2f7,#e4ecf7);
-}
+        /* 1. 공지사항 */
+        .notice-list { list-style: none; padding: 0; font-size: 14px; }
+        .notice-list li { padding: 10px 0; border-bottom: 1px dashed #eee; display: flex; justify-content: space-between; }
+        .notice-list .new-badge { background: #e74c3c; color: #fff; padding: 2px 5px; border-radius: 3px; font-size: 10px; margin-left: 5px; }
 
-/* 헤더 */
-header {
-  background: linear-gradient(135deg,#0f2f5f,#2563eb);
-  color:white;
-  padding:24px 36px;
-  font-size:22px;
-  font-weight:bold;
-}
+        /* 2. 일정표 (중앙) */
+        .tab-menu { display: flex; gap: 10px; margin-bottom: 15px; }
+        .tab-btn { padding: 10px 25px; border-radius: 8px; border: 1px solid #ddd; background: #fff; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .tab-btn.active { background: var(--main-blue); color: #fff; border-color: var(--main-blue); }
+        #calendar-view { min-height: 500px; border: 1px solid #eee; border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        th { background: #f8f9fa; padding: 12px; border-bottom: 2px solid #ddd; }
+        td { border: 1px solid #eee; padding: 15px; height: 80px; vertical-align: top; width: 14.2%; }
 
-/* 전체 */
-.wrapper {
-  max-width:1400px;
-  margin:auto;
-  padding:24px;
-}
+        /* 3. 매출현황 상세 (우측 바로가기) */
+        .sales-link { display: flex; align-items: center; justify-content: space-between; background: #f9f9f9; padding: 15px; border-radius: 8px; text-decoration: none; color: #444; margin-bottom: 10px; border: 1px solid #eee; transition: 0.3s; }
+        .sales-link:hover { border-color: var(--main-blue); background: #fff; transform: translateX(5px); }
+        .sales-link i { color: #27ae60; font-size: 20px; }
 
-/* 상단 */
-.grid {
-  display:grid;
-  grid-template-columns: 360px 1fr;
-  gap:20px;
-}
-
-/* 카드 */
-.card {
-  background:white;
-  border-radius:16px;
-  padding:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
-}
-
-.card h2 {
-  margin-bottom:14px;
-  color:#0f2f5f;
-}
-
-/* 공지 */
-.notice li {
-  padding:10px 0;
-  border-bottom:1px solid #eee;
-}
-
-.notice li:last-child { border:none; }
-
-.date {
-  float:right;
-  font-size:12px;
-  color:#9ca3af;
-}
-
-/* 버튼 */
-.tabs {
-  margin-bottom:10px;
-}
-
-button {
-  padding:8px 14px;
-  border:none;
-  border-radius:8px;
-  margin-right:6px;
-  background:#e5e7eb;
-  cursor:pointer;
-}
-
-button.active {
-  background:#2563eb;
-  color:white;
-}
-
-/* iframe */
-iframe {
-  width:100%;
-  height:340px;
-  border-radius:10px;
-  border:1px solid #ddd;
-}
-
-/* 매출 */
-.sales {
-  margin-top:20px;
-}
-
-.sales-grid {
-  display:grid;
-  grid-template-columns: repeat(3,1fr);
-  gap:16px;
-}
-
-.sales-card {
-  text-decoration:none;
-  color:white;
-  padding:20px;
-  border-radius:14px;
-  text-align:center;
-  transition:0.2s;
-}
-
-.sales-card:hover {
-  transform:translateY(-3px);
-}
-
-.sales-card:nth-child(1){background:linear-gradient(135deg,#2563eb,#60a5fa);}
-.sales-card:nth-child(2){background:linear-gradient(135deg,#059669,#34d399);}
-.sales-card:nth-child(3){background:linear-gradient(135deg,#7c3aed,#c084fc);}
-
-/* 실적 */
-.summary {
-  margin-top:24px;
-}
-
-.summary-grid {
-  display:grid;
-  grid-template-columns: repeat(4,1fr);
-  gap:12px;
-}
-
-.box {
-  background:#f3f6fb;
-  padding:14px;
-  border-radius:10px;
-  text-align:center;
-}
-
-.box strong {
-  display:block;
-  font-size:18px;
-}
-
-.box small {
-  display:block;
-  font-size:12px;
-  color:#6b7280;
-}
-
-/* 그래프 */
-.chart-box {
-  margin-top:20px;
-  padding:18px;
-  background:#f8fafc;
-  border-radius:14px;
-}
-
-.bar-row {
-  display:grid;
-  grid-template-columns:80px 1fr;
-  align-items:center;
-  gap:12px;
-  margin-bottom:16px;
-  font-size:14px;
-  font-weight:bold;
-}
-
-.bar-bg {
-  position:relative;
-  background:#e5e7eb;
-  height:18px;
-  border-radius:999px;
-}
-
-.bar-2024 {
-  position:absolute;
-  height:100%;
-  background:#9ca3af;
-  border-radius:999px;
-  opacity:0.7;
-}
-
-.bar-2025 {
-  position:absolute;
-  height:100%;
-  background:linear-gradient(90deg,#2563eb,#60a5fa);
-  border-radius:999px;
-}
-
-/* 색상 */
-.bar-2025.green { background:linear-gradient(90deg,#059669,#34d399); }
-.bar-2025.purple { background:linear-gradient(90deg,#7c3aed,#c084fc); }
-.bar-2025.orange { background:linear-gradient(90deg,#ea580c,#facc15); }
-
-.bar-2024.green { background:#6ee7b7; }
-.bar-2024.purple { background:#c4b5fd; }
-.bar-2024.orange { background:#fdba74; }
-
-</style>
-
-<script>
-function showWork(type){
-  document.getElementById("osaka").style.display = type==="osaka"?"block":"none";
-  document.getElementById("kyushu").style.display = type==="kyushu"?"block":"none";
-
-  document.getElementById("btn1").classList.toggle("active", type==="osaka");
-  document.getElementById("btn2").classList.toggle("active", type==="kyushu");
-}
-</script>
-
+        /* 4. 실적표 */
+        .perf-table { width: 100%; font-size: 13px; text-align: center; }
+        .perf-table th { background: #edf2f7; color: #4a5568; padding: 8px; }
+        .perf-table td { padding: 10px; border-bottom: 1px solid #f0f0f0; }
+        .growth-up { color: #e74c3c; font-weight: bold; }
+    </style>
 </head>
-
 <body>
 
-<header>SEISIN 운영 대시보드</header>
+<header>
+    <div class="logo"><i class="fa-solid fa-crown"></i> SEISHIN GROUP</div>
+    <div style="font-weight: bold; color: var(--main-blue);"><i class="fa-regular fa-calendar-check"></i> 2026. 04. 28 (화)</div>
+</header>
 
-<div class="wrapper">
-
-<div class="grid">
-
-<!-- 공지 -->
-<div class="card">
-  <h2>공지사항</h2>
-  <ul class="notice">
-    <li>4월 마감-테스트 <span class="date">04-30</span></li>
-    <li>연휴 일정-테스트 <span class="date">04-28</span></li>
-    <li>근무표 확인-테스트 <span class="date">04-25</span></li>
-  </ul>
-</div>
-
-<!-- 근무 -->
-<div class="card">
-  <h2>근무현황</h2>
-
-  <div class="tabs">
-    <button id="btn1" class="active" onclick="showWork('osaka')">오사카</button>
-    <button id="btn2" onclick="showWork('kyushu')">규슈</button>
-  </div>
-
-  <div id="osaka">
-    <iframe src="https://docs.google.com/spreadsheets/d/1_9Yk87noVzaUfhNcp91p5Mc3LXpOJILq/edit?rtpof=true&gid=1684846876#gid=1684846876"></iframe>
-  </div>
-
-  <div id="kyushu" style="display:none;">
-    <iframe src="https://docs.google.com/spreadsheets/d/18tUIu7JdoyQ-mnP37xWQTwzJCoP4B_SN/edit?gid=1684846876#gid=1684846876"></iframe>
-  </div>
-</div>
-
-</div>
-
-<!-- 매출 -->
-<div class="card sales">
-  <h2>매출현황</h2>
-
-  <div class="sales-grid">
-    <a class="sales-card" href="https://docs.google.com/spreadsheets/d/1VLv1fv0IH7rrdUEgFyh0_4nWLnB9OvgzAnsGYLFzEEY/edit?gid=862432400#gid=862432400" target="_blank">오사카</a>
-    <a class="sales-card" href="https://docs.google.com/spreadsheets/d/1SVcGwvkbtm5zAg3iuzjpSrO48d3_CDCww-KsQPJ0UbA/edit?gid=975850320#gid=975850320" target="_blank">규슈</a>
-    <a class="sales-card" href="https://docs.google.com/spreadsheets/d/1RXXBcNKWi0WRNj_fH5DUlzKRXVz1tEYE7aJA-7i5slM/edit?gid=975850320#gid=975850320" target="_blank">동경</a>
-  </div>
-</div>
-
-<!-- 실적 -->
-<div class="card summary">
-  <h2>2024 & 2025 실적</h2>
-
-  <div class="summary-grid">
-    <div class="box">단체수<strong>2025: 2,938</strong><small>2024: 4,003</small></div>
-    <div class="box">인원<strong>2025: 63,182</strong><small>2024: 85,775</small></div>
-    <div class="box">매출<strong>2025: 13억엔</strong><small>2024: 14억엔</small></div>
-    <div class="box">매출이익<strong>2025: 1억4천만엔</strong><small>2024: 1억5천만엔</small></div>
-  </div>
-
-  <div class="chart-box">
-
-    <div class="bar-row">
-      <span>단체수</span>
-      <div class="bar-bg">
-        <div class="bar-2024" style="width:60%"></div>
-        <div class="bar-2025" style="width:70%"></div>
-      </div>
+<div class="container">
+    <div class="left-col">
+        <div class="card">
+            <h3><i class="fa-solid fa-bullhorn"></i> 공지사항</h3>
+            <ul class="notice-list">
+                <li><span>5월 연휴 업무 일정 안내 <span class="new-badge">NEW</span></span><small>04-24</small></li>
+                <li><span>4월 실적 마감 안내 (4/30 마감)</span><small>04-23</small></li>
+                <li><span>본사 세이신 마크 통합 관련 공지</span><small>04-22</small></li>
+                <li><span>큐슈 전세기 좌석 프로모션 안내</span><small>04-21</small></li>
+                <li><span>하반기 워크샵 일정 설문 조사</span><small>04-19</small></li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3><i class="fa-solid fa-chart-pie"></i> 연도별 실적비교</h3>
+            <table class="perf-table">
+                <tr><th>구분</th><th>매출(억)</th><th>이익(억)</th></tr>
+                <tr><td>2024년</td><td>1,689</td><td>142</td></tr>
+                <tr style="background: #fffdf0;"><td>2025년</td><td><strong>1,255</strong></td><td><strong>142</strong></td></tr>
+                <tr><td colspan="3" style="font-size: 11px; color: #666; padding-top: 10px;">* 2025년은 현재 진행 중인 데이터입니다.</td></tr>
+            </table>
+        </div>
     </div>
 
-    <div class="bar-row">
-      <span>인원</span>
-      <div class="bar-bg">
-        <div class="bar-2024 green" style="width:65%"></div>
-        <div class="bar-2025 green" style="width:75%"></div>
-      </div>
+    <div class="center-col">
+        <div class="card" style="height: 100%;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <div class="tab-menu">
+                    <button id="osaka-btn" class="tab-btn active" onclick="loadData('Osaka')">오사카 일정표</button>
+                    <button id="kyushu-btn" class="tab-btn" onclick="loadData('Kyushu')">규슈 일정표</button>
+                </div>
+                <h2 style="margin: 0; color: #333;">2026년 4월</h2>
+            </div>
+            <div id="calendar-view">
+                <p style="text-align: center; padding: 100px; color: #999;">데이터를 연동 중입니다...</p>
+            </div>
+        </div>
     </div>
 
-    <div class="bar-row">
-      <span>매출</span>
-      <div class="bar-bg">
-        <div class="bar-2024 purple" style="width:70%"></div>
-        <div class="bar-2025 purple" style="width:90%"></div>
-      </div>
+    <div class="right-col">
+        <div class="card">
+            <h3><i class="fa-solid fa-link"></i> 매출현황 상세 (구글 시트)</h3>
+            <a href="https://docs.google.com/spreadsheets/d/1VLv1fv0IH7rrdUEgFyh0_4nWLnB9OvgzAnsGYLFzEEY/" class="sales-link" target="_blank">
+                <div><strong>오사카</strong><br><small>매출현황 시트</small></div><i class="fa-solid fa-up-right-from-square"></i>
+            </a>
+            <a href="https://docs.google.com/spreadsheets/d/1SVcGwvkbtm5zAg3iuzjpSrO48d3_CDCww-KsQPJ0UbA/" class="sales-link" target="_blank">
+                <div><strong>규슈</strong><br><small>매출현황 시트</small></div><i class="fa-solid fa-up-right-from-square"></i>
+            </a>
+            <a href="https://docs.google.com/spreadsheets/d/1RXXBcNKWi0WRNj_fH5DUlzKRXVz1tEYE7aJA-7i5slM/" class="sales-link" target="_blank">
+                <div><strong>동경</strong><br><small>매출현황 시트</small></div><i class="fa-solid fa-up-right-from-square"></i>
+            </a>
+        </div>
+        <div class="card">
+            <h3><i class="fa-solid fa-folder-tree"></i> 업무 바로가기</h3>
+            <button class="tab-btn" style="width: 100%; margin-bottom: 10px; text-align: left;"><i class="fa-brands fa-google-drive"></i> 전사 공유 드라이브</button>
+            <button class="tab-btn" style="width: 100%; text-align: left;"><i class="fa-solid fa-user-gear"></i> 인사/급여 관리 시스템</button>
+        </div>
     </div>
-
-    <div class="bar-row">
-      <span>이익</span>
-      <div class="bar-bg">
-        <div class="bar-2024 orange" style="width:60%"></div>
-        <div class="bar-2025 orange" style="width:80%"></div>
-      </div>
-    </div>
-
-  </div>
 </div>
 
-</div>
-
+<script>
+    // 이 부분에 나중에 제가 드릴 Google Apps Script 배포 URL을 넣으시면 실시간 연동이 완료됩니다.
+    function loadData(region) {
+        // 버튼 디자인 변경
+        document.getElementById('osaka-btn').className = region === 'Osaka' ? 'tab-btn active' : 'tab-btn';
+        document.getElementById('kyushu-btn').className = region === 'Kyushu' ? 'tab-btn active' : 'tab-btn';
+        
+        // 실제 데이터 호출 로직 (생략 - API 연결 시 활성화)
+        console.log(region + " 데이터 로드 중...");
+    }
+</script>
 </body>
 </html>
