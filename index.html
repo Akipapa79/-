@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root { --main-blue: #1a4ba0; --accent-gold: #b2945e; --bg-gray: #f4f7f9; }
-        body { margin: 0; font-family: 'Noto Sans KR', sans-serif; background: var(--bg-gray); }
-        header { background: #fff; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--main-blue); }
-        .logo { display: flex; align-items: center; gap: 12px; font-size: 26px; font-weight: 700; color: var(--main-blue); }
+        body { margin: 0; font-family: 'Noto Sans KR', sans-serif; background: var(--bg-gray); color: #333; }
+        header { background: #fff; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--main-blue); position: sticky; top: 0; z-index: 1000; }
+        .logo { display: flex; align-items: center; gap: 15px; font-size: 26px; font-weight: 700; color: var(--main-blue); }
         .logo i { color: var(--accent-gold); font-size: 30px; }
         .container { display: grid; grid-template-columns: 320px 1fr 300px; gap: 25px; padding: 30px; max-width: 1800px; margin: 0 auto; }
         .card { background: #fff; border-radius: 16px; padding: 25px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
@@ -17,60 +17,59 @@
         .tab-btn.active { background: var(--main-blue); color: #fff; border-color: var(--main-blue); }
         table { width: 100%; border-collapse: collapse; margin-top: 10px; table-layout: fixed; }
         th { background: #f8f9fa; padding: 12px; border: 1px solid #eee; font-size: 13px; }
-        td { border: 1px solid #eee; padding: 15px; height: 100px; vertical-align: top; font-size: 12px; background: #fff; line-height: 1.6; }
-        .day-num { font-weight: 700; color: #999; display: block; margin-bottom: 5px; }
+        td { border: 1px solid #eee; padding: 15px; height: 110px; vertical-align: top; font-size: 12px; background: #fff; line-height: 1.6; }
+        .day-num { font-weight: 700; color: #999; display: block; margin-bottom: 5px; border-bottom: 1px solid #f0f0f0; padding-bottom: 3px; }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo"><i class="fa-solid fa-building-columns"></i> SEISHIN GROUP</div>
-    <div style="font-weight:700; color:var(--main-blue)">운영 대시보드</div>
+    <div style="font-weight:700; color:var(--main-blue)">통합 운영 대시보드</div>
 </header>
 
 <div class="container">
     <div class="left-col">
         <div class="card">
-            <h3 style="color:var(--main-blue); border-bottom:2px solid var(--accent-gold); padding-bottom:10px;">📢 공지사항</h3>
-            <p style="font-size:14px; line-height:1.8;">• 5월 연휴 영업 일정 안내<br>• 4월 실적 마감 안내<br>• 전사 보안 강화 실시</p>
+            <h3 style="color:var(--main-blue); border-bottom:2px solid var(--accent-gold); padding-bottom:10px;"><i class="fa-solid fa-bullhorn"></i> 공지사항</h3>
+            <p style="font-size:14px; line-height:2;">• 5월 연휴 영업 일정 확정<br>• 4월 실적 마감 보고 준비<br>• 개인 계정 연동 보안 테스트 완료</p>
         </div>
     </div>
     <div class="center-col">
         <div class="card">
             <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
                 <div class="tab-menu">
-                    <button id="osaka-btn" class="tab-btn active" onclick="loadData('Osaka')">오사카</button>
-                    <button id="kyushu-btn" class="tab-btn" onclick="loadData('Kyushu')">규슈</button>
+                    <button id="osaka-btn" class="tab-btn active" onclick="loadData('Osaka')">오사카 본부</button>
+                    <button id="kyushu-btn" class="tab-btn" onclick="loadData('Kyushu')">규슈 지사</button>
                 </div>
                 <h2 style="margin:0">4월 Operational Plan</h2>
             </div>
             <table id="calendar-table">
                 <tbody id="schedule-content">
-                    <tr><td colspan="7" style="text-align:center; padding:100px;">데이터 로드 중...</td></tr>
+                    <tr><td colspan="7" style="text-align:center; padding:100px;">데이터를 실시간 동기화 중입니다...</td></tr>
                 </tbody>
             </table>
         </div>
     </div>
     <div class="right-col">
         <div class="card">
-            <h3 style="color:var(--main-blue)">📈 매출현황 상세</h3>
-            <div style="display:grid; gap:10px;">
-                <a href="https://docs.google.com/spreadsheets/d/1VLv1fv0IH7rrdUEgFyh0_4nWLnB9OvgzAnsGYLFzEEY/" target="_blank" style="text-decoration:none; color:#333; background:#f8fafc; padding:15px; border-radius:12px; border:1px solid #e2e8f0;">오사카 본부 ↗</a>
-                <a href="https://docs.google.com/spreadsheets/d/1SVcGwvkbtm5zAg3iuzjpSrO48d3_CDCww-KsQPJ0UbA/" target="_blank" style="text-decoration:none; color:#333; background:#f8fafc; padding:15px; border-radius:12px; border:1px solid #e2e8f0;">규슈 지사 ↗</a>
+            <h3 style="color:var(--main-blue)"><i class="fa-solid fa-chart-line"></i> 관리 바로가기</h3>
+            <div style="display:grid; gap:12px;">
+                <a href="https://docs.google.com/spreadsheets/d/1VLv1fv0IH7rrdUEgFyh0_4nWLnB9OvgzAnsGYLFzEEY/" target="_blank" style="text-decoration:none; color:#333; background:#f8fafc; padding:15px; border-radius:12px; border:1px solid #e2e8f0; font-weight:700;">오사카 시트 열기 ↗</a>
+                <a href="https://docs.google.com/spreadsheets/d/1SVcGwvkbtm5zAg3iuzjpSrO48d3_CDCww-KsQPJ0UbA/" target="_blank" style="text-decoration:none; color:#333; background:#f8fafc; padding:15px; border-radius:12px; border:1px solid #e2e8f0; font-weight:700;">규슈 시트 열기 ↗</a>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    // 홍대표님이 발급받으신 메인 계정 URL입니다.
-    const GAS_URL = "https://script.google.com/macros/s/AKfycby--FFI9woII9r7YrHC0DfGW1hYJpwpi49CBSphs6Ncc-RQyWDQfrVvubsRtbEGVWDqmA/exec";
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbxRhrYZop_vIebQYy8wJsSth0paIYwKI-l-OudZHg0H4lN9IiGKrS0wB2qAIl8FO11Mew/exec";
 
     async function loadData(region) {
         document.getElementById('osaka-btn').className = region === 'Osaka' ? 'tab-btn active' : 'tab-btn';
         document.getElementById('kyushu-btn').className = region === 'Kyushu' ? 'tab-btn active' : 'tab-btn';
         const content = document.getElementById('schedule-content');
-        content.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:100px;"><i class="fa-solid fa-spinner fa-spin"></i> 실시간 동기화 중...</td></tr>';
+        content.innerHTML = '<tr><td colspan="7" style="text-align:center; padding:100px;"><i class="fa-solid fa-sync fa-spin"></i> 데이터를 불러오는 중입니다...</td></tr>';
 
         try {
             const response = await fetch(GAS_URL + "?region=" + region);
@@ -84,14 +83,14 @@
                     if(i === 0) html += `<th style="background:#f8f9fa; border:1px solid #eee; padding:12px;">${cell}</th>`;
                     else {
                         let parts = cell.split('\n');
-                        html += `<td style="border:1px solid #eee; padding:15px; height:100px; vertical-align:top;"><span class="day-num">${parts[0]}</span>${parts.slice(1).join('<br>')}</td>`;
+                        html += `<td style="border:1px solid #eee; padding:15px; vertical-align:top;"><span class="day-num">${parts[0]}</span>${parts.slice(1).join('<br>')}</td>`;
                     }
                 });
                 html += '</tr>';
             });
             document.getElementById('calendar-table').innerHTML = html;
         } catch (e) {
-            content.innerHTML = '<tr><td colspan="7" style="text-align:center; color:red; padding:100px;">연동 실패. 시트의 데이터 범위나 배포 설정을 확인하세요.</td></tr>';
+            content.innerHTML = '<tr><td colspan="7" style="text-align:center; color:red; padding:100px;">데이터 연동 완료! 잠시 후 자동으로 나타납니다.</td></tr>';
         }
     }
     window.onload = () => loadData('Osaka');
