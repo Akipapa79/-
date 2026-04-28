@@ -1,0 +1,72 @@
+# -<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>세이신 운영 대시보드</title>
+
+<style>
+body {font-family: Arial; background:#f5f6fa; margin:0;}
+header {background:#1e3a8a; color:white; padding:15px; font-size:20px;}
+.container {display:grid; grid-template-columns: 1fr 2fr; gap:15px; padding:15px;}
+.card {background:white; padding:15px; border-radius:10px;}
+h2 {margin:0 0 10px 0;}
+iframe {width:100%; border:none;}
+.tabs button {margin-right:5px; padding:5px 10px;}
+</style>
+
+<script>
+function showTab(tab){
+  document.getElementById('osaka').style.display = tab==='osaka'?'block':'none';
+  document.getElementById('kyushu').style.display = tab==='kyushu'?'block':'none';
+}
+</script>
+
+</head>
+
+<body>
+
+<header>세이신 운영 대시보드</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2>공지사항</h2>
+    <iframe src="https://docs.google.com/spreadsheets/d/1AM14eNT1pL7A20fDiaBvXoXeeslm5ALIKkU5Z6R4ihs/edit?gid=0#gid=0ㅍ" height="300"></iframe>
+  </div>
+
+  <div class="card">
+    <h2>일정표</h2>
+
+    <div class="tabs">
+      <button onclick="showTab('osaka')">오사카</button>
+      <button onclick="showTab('kyushu')">큐슈</button>
+    </div>
+
+    <div id="osaka">
+      <iframe src="https://docs.google.com/spreadsheets/d/1_9Yk87noVzaUfhNcp91p5Mc3LXpOJILq/edit?gid=1976745365#gid=1976745365" height="600"></iframe>
+    </div>
+
+    <div id="kyushu" style="display:none;">
+      <iframe src="https://docs.google.com/spreadsheets/d/18tUIu7JdoyQ-mnP37xWQTwzJCoP4B_SN/edit?gid=1684846876#gid=1684846876" height="600"></iframe>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <h2>실적표</h2>
+    <iframe src="https://docs.google.com/spreadsheets/d/1LKbsLQ85a8EgD3yXF5E3DLLqQHBthtF6wlxPPy_z4Wk/edit?gid=1814746152#gid=1814746152L" height="400"></iframe>
+  </div>
+
+  <div class="card">
+    <h2>모객현황</h2>
+    <iframe src="https://docs.google.com/spreadsheets/d/1MEY5jqW_EYqAx7lG_qCCn52UBJh8UQeRd2BKM9kZGPs/edit?gid=600363142#gid=600363142" height="400"></iframe>
+  </div>
+
+</div>
+
+</body>
+</html>
