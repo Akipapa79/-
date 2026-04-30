@@ -6,64 +6,77 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body { margin: 0; font-family: 'Noto Sans KR', sans-serif; background: #f0f4f8; color: #333; }
-        header { background: #0f2f5f; padding: 25px 40px; display: flex; align-items: center; gap: 15px; color: white; font-size: 24px; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        header i { color: #b2945e; font-size: 28px; }
-        .container { max-width: 1200px; margin: 40px auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; padding: 0 20px; }
-        .card { background: white; border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
-        .card h2 { color: #0f2f5f; font-size: 20px; margin-top: 0; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f0f4f8; padding-bottom: 15px; }
+        body { margin: 0; font-family: 'Noto Sans KR', sans-serif; background: #f4f7f9; color: #333; }
+        header { background: #0f2f5f; padding: 20px 40px; display: flex; align-items: center; gap: 15px; color: white; font-size: 26px; font-weight: 700; border-bottom: 4px solid #b2945e; }
+        header img { height: 45px; object-fit: contain; background: white; border-radius: 5px; padding: 2px; }
+        .container { max-width: 1200px; margin: 40px auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; padding: 0 20px; }
+        .card { background: white; border-radius: 16px; padding: 30px; box-shadow: 0 8px 20px rgba(0,0,0,0.06); border: 1px solid #eaeaea; }
+        .card h2 { color: #0f2f5f; font-size: 20px; margin-top: 0; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f0f4f8; padding-bottom: 12px; }
         .card h2 i { color: #b2945e; }
-        .btn-grid { display: grid; gap: 15px; }
-        .link-btn { display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #e2e8f0; padding: 18px 24px; border-radius: 12px; text-decoration: none; color: #1e293b; font-weight: 700; font-size: 16px; transition: all 0.3s ease; }
-        .link-btn:hover { background: #0f2f5f; color: white; transform: translateY(-3px); }
-        .sub-header { font-size: 16px; font-weight: 700; color: #475569; margin: 20px 0 10px 0; display: flex; align-items: center; gap: 8px; }
+        .notice-list { list-style: none; padding: 0; margin: 0; }
+        .notice-list li { padding: 12px 0; border-bottom: 1px dashed #eee; font-size: 15px; color: #444; }
+        .notice-list li::before { content: "•"; color: #b2945e; font-weight: bold; margin-right: 8px; }
+        .btn-grid { display: grid; gap: 12px; }
+        .link-btn { display: flex; align-items: center; justify-content: space-between; padding: 15px 20px; border-radius: 10px; text-decoration: none; color: white; font-weight: 700; font-size: 16px; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .link-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); filter: brightness(1.1); }
+        .btn-osaka { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+        .btn-kyushu { background: linear-gradient(135deg, #059669, #10b981); }
+        .btn-tokyo { background: linear-gradient(135deg, #7c3aed, #8b5cf6); }
+        .sub-header { font-size: 16px; font-weight: 700; color: #334155; margin: 20px 0 10px 0; display: flex; align-items: center; gap: 8px; }
         .sub-btn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .sub-link-btn { text-align: center; background: #e0f2fe; color: #0369a1; padding: 15px 10px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; transition: 0.3s; cursor: pointer; }
-        .sub-link-btn:hover { background: #0284c7; color: white; }
-        #hotel-detail { display: none; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; padding: 15px; background: #f1f5f9; border-radius: 10px; }
-        .hotel-btn { background: white; padding: 12px; text-align: center; border-radius: 8px; text-decoration: none; color: #334155; font-weight: 700; border: 1px solid #cbd5e1; }
-        .hotel-btn:hover { background: #b2945e; color: white; border-color: #b2945e; }
+        .sub-link-btn { text-align: center; background: linear-gradient(135deg, #d4af37, #b2945e); color: white; padding: 14px 10px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 14px; transition: 0.3s; cursor: pointer; box-shadow: 0 3px 5px rgba(0,0,0,0.1); }
+        .sub-link-btn:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        #hotel-detail { display: none; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 15px; padding: 15px; background: #f8fafc; border-radius: 10px; border: 1px solid #e2e8f0; }
+        .hotel-btn { background: white; padding: 12px; text-align: center; border-radius: 8px; text-decoration: none; color: #0f2f5f; font-weight: 700; border: 1px solid #cbd5e1; font-size: 13px; transition: 0.2s; }
+        .hotel-btn:hover { background: #0f2f5f; color: white; border-color: #0f2f5f; }
     </style>
 </head>
 <body>
 
-<header><i class="fa-solid fa-building-columns"></i> <span>SEISHIN GROUP 통합 관리 시스템</span></header>
+<header>
+    <img src="SIT.jpg" alt="SEISHIN Logo">
+    <span>SEISHIN GROUP 통합 대시보드</span>
+</header>
 
 <div class="container">
     <div class="card">
-        <h2><i class="fa-solid fa-bullhorn"></i> 공지사항</h2>
-        <p>• 대시보드 통합 링크 시스템 개편 완료</p>
+        <h2><i class="fa-solid fa-bullhorn"></i> 1. 공지사항</h2>
+        <ul class="notice-list">
+            <li>대시보드 통합 링크 시스템 개편 완료</li>
+            <li>5월 연휴 영업 일정 및 당직표 확인 요망</li>
+            <li>4월 실적 마감 관련 안내사항</li>
+        </ul>
     </div>
 
     <div class="card">
-        <h2><i class="fa-solid fa-chart-line"></i> 매출현황</h2>
+        <h2><i class="fa-solid fa-chart-line"></i> 2. 매출현황</h2>
         <div class="btn-grid">
-            <a href="https://docs.google.com/spreadsheets/d/1VLv1fv0IH7rrdUEgFyh0_4nWLnB9OvgzAnsGYLFzEEY/" target="_blank" class="link-btn">오사카 본부 매출 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-            <a href="https://docs.google.com/spreadsheets/d/1SVcGwvkbtm5zAg3iuzjpSrO48d3_CDCww-KsQPJ0UbA/" target="_blank" class="link-btn">규슈 지사 매출 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-            <a href="https://docs.google.com/spreadsheets/d/1W8vP9i1X1u8fNf5H8_vXzH7wB-uG6-tXkQ1e8zY1Zc/" target="_blank" class="link-btn">동경 본부 매출 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="https://docs.google.com/spreadsheets/d/1VLv1fv0IH7rrdUEgFyh0_4nWLnB9OvgzAnsGYLFzEEY/" target="_blank" class="link-btn btn-osaka">-> 오사카 본부 매출 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="https://docs.google.com/spreadsheets/d/1SVcGwvkbtm5zAg3iuzjpSrO48d3_CDCww-KsQPJ0UbA/" target="_blank" class="link-btn btn-kyushu">-> 규슈 지사 매출 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="https://docs.google.com/spreadsheets/d/1W8vP9i1X1u8fNf5H8_vXzH7wB-uG6-tXkQ1e8zY1Zc/" target="_blank" class="link-btn btn-tokyo">-> 동경 본부 매출 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
     </div>
 
     <div class="card">
-        <h2><i class="fa-solid fa-calendar-check"></i> 근무현황</h2>
+        <h2><i class="fa-solid fa-calendar-check"></i> 3. 근무현황</h2>
         <div class="btn-grid">
-            <a href="https://docs.google.com/spreadsheets/d/1_9Yk87noVzaUfhNcp91p5Mc3LXpOJILq/edit?gid=1684846876#gid=1684846876" target="_blank" class="link-btn">오사카 근무현황 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-            <a href="https://docs.google.com/spreadsheets/d/1vKimTl2MaeLo4-zrsFeIWJOyhHPf7uH2/edit?gid=1684846876#gid=1684846876" target="_blank" class="link-btn">규슈 근무현황 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="https://docs.google.com/spreadsheets/d/1_9Yk87noVzaUfhNcp91p5Mc3LXpOJILq/edit?gid=1684846876#gid=1684846876" target="_blank" class="link-btn btn-osaka">-> 오사카 근무현황 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="https://docs.google.com/spreadsheets/d/1vKimTl2MaeLo4-zrsFeIWJOyhHPf7uH2/edit?gid=1684846876#gid=1684846876" target="_blank" class="link-btn btn-kyushu">-> 규슈 근무현황 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
     </div>
 
     <div class="card">
-        <h2><i class="fa-solid fa-map-location-dot"></i> 지역별 대시보드</h2>
-        <div class="sub-header"><i class="fa-solid fa-location-dot"></i> 오사카 (Osaka)</div>
+        <h2><i class="fa-solid fa-map-location-dot"></i> 4. 지역별 대시보드</h2>
+        <div class="sub-header">-> 오사카 (Osaka)</div>
         <div class="sub-btn-grid">
-            <div onclick="toggleHotels()" class="sub-link-btn" style="background:#0f2f5f; color:white;">호텔블록현황 ▼</div>
+            <div onclick="toggleHotels()" class="sub-link-btn">호텔블록현황 ▼</div>
             <a href="https://drive.google.com/drive/folders/1uxvytBoPKgkLlSyv3QfjkHq0XcvGGtV1" target="_blank" class="sub-link-btn">랜드요금표</a>
             <a href="https://drive.google.com/drive/folders/1_iCde8mz0ym5Vz0N_Oq2LCwg_Y1vm-0c" target="_blank" class="sub-link-btn">호텔요금표</a>
         </div>
         <div id="hotel-detail">
             <a href="https://docs.google.com/spreadsheets/d/1o_oRouHav0Z5aMKWmgZBovg-KLZufQam8SzaR_JljR0/edit?gid=1597431311#gid=1597431311" target="_blank" class="hotel-btn">히노데호텔</a>
             <a href="https://docs.google.com/spreadsheets/d/1aflBDQqYBDW4SIWOrfquTUnRNceHQh8C/edit?gid=487747545#gid=487747545" target="_blank" class="hotel-btn">WBF호텔</a>
-            <a href="https://docs.google.com/spreadsheets/d/1ENafFWMF2M8Cw3YRxgwRAxuNxh1FEQ6gJeniyNZo1mI/edit?gid=1831002516#gid=1831002516" target="_blank" class="hotel-btn">센타라라이프호텔</a>
+            <a href="https://docs.google.com/spreadsheets/d/1ENafFWMF2M8Cw3YRxgwRAxuNxh1FEQ6gJeniyNZo1mI/edit?gid=1831002516#gid=1831002516" target="_blank" class="hotel-btn">센타라라이프</a>
         </div>
     </div>
 </div>
