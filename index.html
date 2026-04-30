@@ -2,75 +2,76 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>SEISHIN Group Dashboard</title>
+    <title>SEISHIN GROUP 통합 대시보드</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root { --main-blue: #0f2f5f; --accent-blue: #2563eb; --accent-gold: #b2945e; --bg-gray: #f4f7f9; }
-        body { margin: 0; font-family: "Segoe UI", Arial; background: var(--bg-gray); }
-        header { background: linear-gradient(135deg, var(--main-blue), var(--accent-blue)); color: white; padding: 20px 30px; font-size: 22px; font-weight: bold; }
-        .wrapper { max-width: 1500px; margin: auto; padding: 20px; }
-        .grid { display: grid; grid-template-columns: 320px 1fr; gap: 20px; }
-        .card { background: white; border-radius: 16px; padding: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); margin-bottom: 20px; }
-        .card h2 { margin-top: 0; color: var(--main-blue); font-size: 18px; border-left: 4px solid var(--accent-gold); padding-left: 10px; margin-bottom: 15px; }
-        .tab-btn { padding: 10px 20px; border: none; border-radius: 8px; margin-right: 5px; background: #e5e7eb; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .tab-btn.active { background: var(--accent-blue); color: white; }
-        /* 시트가 들어갈 프레임 디자인 */
-        .sheet-container { background: #fff; border: 1px solid #ddd; border-radius: 12px; overflow: hidden; height: 550px; }
-        iframe { width: 100%; height: 100%; border: none; display: none; }
-        iframe.active { display: block; }
-        /* 하단 매출 버튼 */
-        .sales-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-        .sales-card { text-decoration: none; color: white; padding: 25px; border-radius: 14px; text-align: center; font-weight: bold; font-size: 18px; transition: 0.3s; }
-        .osaka-bg { background: linear-gradient(135deg, #2563eb, #60a5fa); }
-        .kyushu-bg { background: linear-gradient(135deg, #059669, #34d399); }
-        .tokyo-bg { background: linear-gradient(135deg, #7c3aed, #c084fc); }
+        body { margin: 0; font-family: 'Noto Sans KR', sans-serif; background: #f0f4f8; color: #333; }
+        header { background: #0f2f5f; padding: 25px 40px; display: flex; align-items: center; gap: 15px; color: white; font-size: 24px; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        header i { color: #b2945e; font-size: 28px; }
+        .container { max-width: 1200px; margin: 40px auto; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; padding: 0 20px; }
+        .card { background: white; border-radius: 16px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .card h2 { color: #0f2f5f; font-size: 20px; margin-top: 0; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #f0f4f8; padding-bottom: 15px; }
+        .card h2 i { color: #b2945e; }
+        .btn-grid { display: grid; gap: 15px; }
+        .link-btn { display: flex; align-items: center; justify-content: space-between; background: #f8fafc; border: 1px solid #e2e8f0; padding: 18px 24px; border-radius: 12px; text-decoration: none; color: #1e293b; font-weight: 700; font-size: 16px; transition: all 0.3s ease; }
+        .link-btn:hover { background: #0f2f5f; color: white; transform: translateY(-3px); }
+        .sub-header { font-size: 16px; font-weight: 700; color: #475569; margin: 20px 0 10px 0; display: flex; align-items: center; gap: 8px; }
+        .sub-btn-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .sub-link-btn { text-align: center; background: #e0f2fe; color: #0369a1; padding: 15px 10px; border-radius: 10px; text-decoration: none; font-weight: 700; font-size: 14px; transition: 0.3s; cursor: pointer; }
+        .sub-link-btn:hover { background: #0284c7; color: white; }
+        #hotel-detail { display: none; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; padding: 15px; background: #f1f5f9; border-radius: 10px; }
+        .hotel-btn { background: white; padding: 12px; text-align: center; border-radius: 8px; text-decoration: none; color: #334155; font-weight: 700; border: 1px solid #cbd5e1; }
+        .hotel-btn:hover { background: #b2945e; color: white; border-color: #b2945e; }
     </style>
 </head>
 <body>
 
-<header><i class="fa-solid fa-building-columns"></i> SEISHIN 운영 대시보드</header>
+<header><i class="fa-solid fa-building-columns"></i> <span>SEISHIN GROUP 통합 관리 시스템</span></header>
 
-<div class="wrapper">
-    <div class="grid">
-        <div class="card">
-            <h2>공지사항</h2>
-            <ul style="list-style:none; padding:0; line-height:2.2; font-size:14px;">
-                <li style="border-bottom:1px solid #eee;">• 실시간 운영 현황 연동</li>
-                <li style="border-bottom:1px solid #eee;">• 4월 마감 일정 안내</li>
-                <li>• 동경 본부 통합 대시보드</li>
-            </ul>
-        </div>
-        <div class="card">
-            <h2>근무현황 (4월 Plan)</h2>
-            <div style="margin-bottom: 15px;">
-                <button id="b1" class="tab-btn active" onclick="show('osaka','b1')">오사카</button>
-                <button id="b2" class="tab-btn" onclick="show('kyushu','b2')">규슈</button>
-                <button id="b3" class="tab-btn" onclick="show('tokyo','b3')">동경</button>
-            </div>
-            <div class="sheet-container">
-                <iframe id="osaka" class="active" src="https://docs.google.com/spreadsheets/d/1VLv1fv0IH7rrdUEgFyh0_4nWLnB9OvgzAnsGYLFzEEY/pubhtml?gid=1510344400&single=true&widget=false&headers=false&chrome=false&rm=minimal"></iframe>
-                <iframe id="kyushu" src="https://docs.google.com/spreadsheets/d/1SVcGwvkbtm5zAg3iuzjpSrO48d3_CDCww-KsQPJ0UbA/pubhtml?gid=1510344400&single=true&widget=false&headers=false&chrome=false&rm=minimal"></iframe>
-                <iframe id="tokyo" src="https://docs.google.com/spreadsheets/d/1W8vP9i1X1u8fNf5H8_vXzH7wB-uG6-tXkQ1e8zY1Zc/pubhtml?gid=1510344400&single=true&widget=false&headers=false&chrome=false&rm=minimal"></iframe>
-            </div>
+<div class="container">
+    <div class="card">
+        <h2><i class="fa-solid fa-bullhorn"></i> 공지사항</h2>
+        <p>• 대시보드 통합 링크 시스템 개편 완료</p>
+    </div>
+
+    <div class="card">
+        <h2><i class="fa-solid fa-chart-line"></i> 매출현황</h2>
+        <div class="btn-grid">
+            <a href="https://docs.google.com/spreadsheets/d/1VLv1fv0IH7rrdUEgFyh0_4nWLnB9OvgzAnsGYLFzEEY/" target="_blank" class="link-btn">오사카 본부 매출 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="https://docs.google.com/spreadsheets/d/1SVcGwvkbtm5zAg3iuzjpSrO48d3_CDCww-KsQPJ0UbA/" target="_blank" class="link-btn">규슈 지사 매출 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="https://docs.google.com/spreadsheets/d/1W8vP9i1X1u8fNf5H8_vXzH7wB-uG6-tXkQ1e8zY1Zc/" target="_blank" class="link-btn">동경 본부 매출 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
     </div>
 
     <div class="card">
-        <h2>매출현황 (전체 시트 연결)</h2>
-        <div class="sales-grid">
-            <a class="sales-card osaka-bg" href="https://docs.google.com/spreadsheets/d/1VLv1fv0IH7rrdUEgFyh0_4nWLnB9OvgzAnsGYLFzEEY/" target="_blank">오사카 본부 ↗</a>
-            <a class="sales-card kyushu-bg" href="https://docs.google.com/spreadsheets/d/1SVcGwvkbtm5zAg3iuzjpSrO48d3_CDCww-KsQPJ0UbA/" target="_blank">규슈 지사 ↗</a>
-            <a class="sales-card tokyo-bg" href="https://docs.google.com/spreadsheets/d/1W8vP9i1X1u8fNf5H8_vXzH7wB-uG6-tXkQ1e8zY1Zc/" target="_blank">동경 본부 ↗</a>
+        <h2><i class="fa-solid fa-calendar-check"></i> 근무현황</h2>
+        <div class="btn-grid">
+            <a href="https://docs.google.com/spreadsheets/d/1_9Yk87noVzaUfhNcp91p5Mc3LXpOJILq/edit?gid=1684846876#gid=1684846876" target="_blank" class="link-btn">오사카 근무현황 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="https://docs.google.com/spreadsheets/d/1vKimTl2MaeLo4-zrsFeIWJOyhHPf7uH2/edit?gid=1684846876#gid=1684846876" target="_blank" class="link-btn">규슈 근무현황 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2><i class="fa-solid fa-map-location-dot"></i> 지역별 대시보드</h2>
+        <div class="sub-header"><i class="fa-solid fa-location-dot"></i> 오사카 (Osaka)</div>
+        <div class="sub-btn-grid">
+            <div onclick="toggleHotels()" class="sub-link-btn" style="background:#0f2f5f; color:white;">호텔블록현황 ▼</div>
+            <a href="https://drive.google.com/drive/folders/1uxvytBoPKgkLlSyv3QfjkHq0XcvGGtV1" target="_blank" class="sub-link-btn">랜드요금표</a>
+            <a href="https://drive.google.com/drive/folders/1_iCde8mz0ym5Vz0N_Oq2LCwg_Y1vm-0c" target="_blank" class="sub-link-btn">호텔요금표</a>
+        </div>
+        <div id="hotel-detail">
+            <a href="https://docs.google.com/spreadsheets/d/1o_oRouHav0Z5aMKWmgZBovg-KLZufQam8SzaR_JljR0/edit?gid=1597431311#gid=1597431311" target="_blank" class="hotel-btn">히노데호텔</a>
+            <a href="https://docs.google.com/spreadsheets/d/1aflBDQqYBDW4SIWOrfquTUnRNceHQh8C/edit?gid=487747545#gid=487747545" target="_blank" class="hotel-btn">WBF호텔</a>
+            <a href="https://docs.google.com/spreadsheets/d/1ENafFWMF2M8Cw3YRxgwRAxuNxh1FEQ6gJeniyNZo1mI/edit?gid=1831002516#gid=1831002516" target="_blank" class="hotel-btn">센타라라이프호텔</a>
         </div>
     </div>
 </div>
 
 <script>
-    function show(id, btnId) {
-        document.querySelectorAll('iframe').forEach(f => f.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        document.getElementById(btnId).classList.add('active');
+    function toggleHotels() {
+        const detail = document.getElementById('hotel-detail');
+        detail.style.display = (detail.style.display === 'grid') ? 'none' : 'grid';
     }
 </script>
 </body>
