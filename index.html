@@ -143,28 +143,64 @@
             filter:brightness(1.06);
         }
 
-        /* 상단색 */
+        /* ===== 공통 컬러 ===== */
 
-        .blue-btn{
-            background:linear-gradient(135deg,#2563eb,#60a5fa);
+        /* 첫열 - 블루 */
+
+        .col-blue{
+            background:
+            linear-gradient(
+            135deg,
+            #1d4ed8 0%,
+            #3b82f6 45%,
+            #93c5fd 100%
+            );
         }
 
-        .gold-btn{
-            background:linear-gradient(135deg,#b8860b,#facc15);
+        /* 두번째열 - 그린 */
+
+        .col-green{
+            background:
+            linear-gradient(
+            135deg,
+            #059669 0%,
+            #10b981 45%,
+            #6ee7b7 100%
+            );
         }
 
-        .purple-btn{
-            background:linear-gradient(135deg,#7c3aed,#c084fc);
+        /* 세번째열 - 퍼플 */
+
+        .col-purple{
+            background:
+            linear-gradient(
+            135deg,
+            #7c3aed 0%,
+            #a855f7 45%,
+            #d8b4fe 100%
+            );
         }
 
         /* 호텔 */
 
         .hotel-top{
-            background:linear-gradient(135deg,#2563eb,#60a5fa);
+            background:
+            linear-gradient(
+            135deg,
+            #2563eb 0%,
+            #3b82f6 45%,
+            #93c5fd 100%
+            );
         }
 
         .hotel-bottom{
-            background:linear-gradient(135deg,#059669,#6ee7b7);
+            background:
+            linear-gradient(
+            135deg,
+            #059669 0%,
+            #10b981 45%,
+            #86efac 100%
+            );
         }
 
         /* 반응형 */
@@ -201,7 +237,7 @@
 
     <div class="top-grid">
 
-        <!-- 1 매출 -->
+        <!-- 1 매출현황 -->
 
         <div class="card">
 
@@ -212,26 +248,38 @@
 
             <div class="btn-grid">
 
-                <a href="오사카매출URL" target="_blank" class="link-btn blue-btn">
+                <a href="오사카매출URL"
+                   target="_blank"
+                   class="link-btn col-blue">
+
                     <span>오사카 매출현황</span>
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
                 </a>
 
-                <a href="규슈매출URL" target="_blank" class="link-btn blue-btn">
+                <a href="규슈매출URL"
+                   target="_blank"
+                   class="link-btn col-green">
+
                     <span>규슈 매출현황</span>
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
                 </a>
 
-                <a href="동경매출URL" target="_blank" class="link-btn blue-btn">
+                <a href="동경매출URL"
+                   target="_blank"
+                   class="link-btn col-purple">
+
                     <span>동경 매출현황</span>
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
                 </a>
 
             </div>
 
         </div>
 
-        <!-- 2 근무 -->
+        <!-- 2 근무현황 -->
 
         <div class="card">
 
@@ -242,21 +290,29 @@
 
             <div class="btn-grid">
 
-                <a href="오사카근무URL" target="_blank" class="link-btn gold-btn">
+                <a href="오사카근무URL"
+                   target="_blank"
+                   class="link-btn col-blue">
+
                     <span>오사카 근무현황</span>
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
                 </a>
 
-                <a href="규슈근무URL" target="_blank" class="link-btn gold-btn">
+                <a href="규슈근무URL"
+                   target="_blank"
+                   class="link-btn col-green">
+
                     <span>규슈 근무현황</span>
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
                 </a>
 
             </div>
 
         </div>
 
-        <!-- 3 인센 -->
+        <!-- 3 인센현황 -->
 
         <div class="card">
 
@@ -269,7 +325,7 @@
 
                 <a href="https://docs.google.com/spreadsheets/d/11giEDLNFNJe0ME6czK0yY7HAwgjOKxJJ/edit?pli=1&gid=331033276#gid=331033276"
                    target="_blank"
-                   class="link-btn purple-btn">
+                   class="link-btn col-blue">
 
                     <span>이트래블 인센현황</span>
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -278,7 +334,7 @@
 
                 <a href="https://docs.google.com/spreadsheets/d/1sSXt8YckniAcmtDG0-QT_UdWWiuxx8Am/edit?pli=1&gid=1695092935#gid=1695092935"
                    target="_blank"
-                   class="link-btn purple-btn">
+                   class="link-btn col-green">
 
                     <span>그외 인센현황</span>
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -287,7 +343,7 @@
 
                 <a href="https://docs.google.com/spreadsheets/d/1Ki1LMopEr8V8Jya6NmzZGpKLHHy3Hp1u/edit?gid=483904815#gid=483904815"
                    target="_blank"
-                   class="link-btn purple-btn">
+                   class="link-btn col-purple">
 
                     <span>한국지사 인센현황</span>
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
