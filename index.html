@@ -1,57 +1,189 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>SEISHIN GROUP 통합 대시보드</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        body { margin:0; font-family:'Noto Sans KR',sans-serif; background:linear-gradient(135deg,#e8eef6 0%,#f7f9fc 100%); color:#111827; }
-        header { background:linear-gradient(135deg,#001f4d 0%,#003876 45%,#005bea 100%); padding:18px 38px; display:flex; align-items:center; gap:15px; color:white; font-size:25px; font-weight:800; border-bottom:4px solid #b2945e; box-shadow:0 8px 24px rgba(0,0,0,0.25); }
-        header img { height:45px; background:white; border-radius:7px; padding:3px; }
-        .container { max-width:980px; margin:30px auto; padding:0 18px; }
-        .top-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-bottom:20px; }
-        .card { background:#ffffff; border-radius:18px; padding:24px; box-shadow:0 14px 32px rgba(15,23,42,0.14); border:1px solid #dbe4f0; }
-        .card h2 { color:#0b2f5f; font-size:19px; margin:0 0 18px 0; display:flex; align-items:center; gap:10px; border-bottom:2px solid #e5edf7; padding-bottom:13px; font-weight:800; }
-        .card h2 i { color:#b2945e; }
-        .btn-grid { display:grid; gap:14px; }
-        .hotel-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:15px; }
+<meta charset="UTF-8">
+<title>SEISHIN GROUP 통합 대시보드</title>
 
-        /* 박스 크기 축소 및 글자 확대, 뿌연 효과 제거 */
-        .link-btn {
-            display:flex; align-items:center; justify-content:space-between;
-            padding:15px 20px;
-            border-radius:12px; text-decoration:none; color:white;
-            transition:0.3s ease;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-            border: 1px solid rgba(255,255,255,0.35);
-        }
-        .link-btn span { font-size:19px; font-weight:800; }
-        .link-btn i { font-size:20px; opacity:1; }
-        .link-btn:hover { transform:translateY(-3px); filter:brightness(1.15); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-        /* 선명하고 입체적인 펄 그라데이션 */
-        .col-blue, .hotel-top {
-            background: linear-gradient(135deg, #002266 0%, #2388ff 45%, #9cc6ff 50%, #0052d9 55%, #001633 100%);
-            box-shadow: inset 0 2px 5px rgba(255,255,255,0.7), 0 5px 15px rgba(0,82,217,0.3);
-        }
-        .col-green, .hotel-bottom {
-            background: linear-gradient(135deg, #004c38 0%, #20d99b 45%, #9cffdf 50%, #008f68 55%, #00261c 100%);
-            box-shadow: inset 0 2px 5px rgba(255,255,255,0.7), 0 5px 15px rgba(0,143,104,0.3);
-        }
-        .col-purple {
-            background: linear-gradient(135deg, #3a006d 0%, #c45cff 45%, #efccff 50%, #7b22d9 55%, #1e0038 100%);
-            box-shadow: inset 0 2px 5px rgba(255,255,255,0.7), 0 5px 15px rgba(123,34,217,0.3);
-        }
+<style>
+body{
+    margin:0;
+    font-family:'Noto Sans KR',sans-serif;
+    background:linear-gradient(135deg,#dfe7f1,#f4f7fb);
+    color:#111827;
+}
 
-        @media(max-width:900px){
-            .container{ max-width:100%; margin:20px auto; }
-            .top-grid{ grid-template-columns:1fr; }
-            .hotel-grid{ grid-template-columns:1fr; }
-            header{ font-size:21px; padding:16px 20px; }
-        }
-    </style>
+header{
+    background:linear-gradient(135deg,#001b44,#003876,#0052cc);
+    padding:18px 36px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+    color:white;
+    font-size:25px;
+    font-weight:900;
+    border-bottom:4px solid #b2945e;
+    box-shadow:0 8px 24px rgba(0,0,0,.28);
+}
+
+header img{
+    height:46px;
+    background:white;
+    border-radius:7px;
+    padding:3px;
+}
+
+.container{
+    max-width:880px;
+    margin:28px auto;
+    padding:0 16px;
+}
+
+.top-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-bottom:16px;
+}
+
+.card{
+    background:#ffffff;
+    border-radius:16px;
+    padding:18px;
+    box-shadow:0 12px 28px rgba(15,23,42,.16);
+    border:1px solid #cfd8e3;
+}
+
+.card h2{
+    color:#0b2f5f;
+    font-size:18px;
+    margin:0 0 14px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    border-bottom:2px solid #e5edf7;
+    padding-bottom:10px;
+    font-weight:900;
+}
+
+.card h2 i{
+    color:#b2945e;
+}
+
+.btn-grid{
+    display:grid;
+    gap:10px;
+}
+
+.hotel-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+}
+
+.link-btn{
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    min-height:46px;
+    padding:10px 14px;
+    border-radius:12px;
+    text-decoration:none;
+    color:white;
+    font-size:15px;
+    font-weight:900;
+    letter-spacing:-.3px;
+    transition:.2s;
+    text-shadow:0 1px 2px rgba(0,0,0,.35);
+}
+
+.link-btn::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg,rgba(255,255,255,.22),rgba(0,0,0,.18));
+}
+
+.link-btn::after{
+    content:"";
+    position:absolute;
+    top:-40%;
+    left:-40%;
+    width:160%;
+    height:200%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,.35),transparent);
+    transform:rotate(18deg);
+}
+
+.link-btn span,
+.link-btn i{
+    position:relative;
+    z-index:2;
+}
+
+.link-btn:hover{
+    transform:translateY(-3px);
+    filter:saturate(1.2) brightness(1.08);
+}
+
+/* 진한 유광 컬러 */
+.col-blue{
+    background:linear-gradient(145deg,#002a7a,#005eff,#003cb5);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.28),
+               inset 0 -8px 14px rgba(0,0,0,.25),
+               0 8px 18px rgba(0,70,190,.42);
+}
+
+.col-green{
+    background:linear-gradient(145deg,#00513d,#00a676,#007a5c);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.28),
+               inset 0 -8px 14px rgba(0,0,0,.25),
+               0 8px 18px rgba(0,120,90,.42);
+}
+
+.col-purple{
+    background:linear-gradient(145deg,#4b0082,#8a22e6,#5f00aa);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.28),
+               inset 0 -8px 14px rgba(0,0,0,.25),
+               0 8px 18px rgba(100,0,180,.42);
+}
+
+.hotel-top{
+    background:linear-gradient(145deg,#002a7a,#005eff,#003cb5);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.28),
+               inset 0 -8px 14px rgba(0,0,0,.25),
+               0 8px 18px rgba(0,70,190,.42);
+}
+
+.hotel-bottom{
+    background:linear-gradient(145deg,#00513d,#00a676,#007a5c);
+    box-shadow:inset 0 2px 3px rgba(255,255,255,.28),
+               inset 0 -8px 14px rgba(0,0,0,.25),
+               0 8px 18px rgba(0,120,90,.42);
+}
+
+@media(max-width:900px){
+    .top-grid,
+    .hotel-grid{
+        grid-template-columns:1fr;
+    }
+
+    .container{
+        max-width:100%;
+    }
+
+    header{
+        font-size:21px;
+        padding:16px 20px;
+    }
+}
+</style>
 </head>
+
 <body>
 
 <header>
@@ -60,87 +192,51 @@
 </header>
 
 <div class="container">
+
     <div class="top-grid">
+
         <div class="card">
             <h2><i class="fa-solid fa-chart-line"></i> 1. 매출현황</h2>
             <div class="btn-grid">
-                <a href="오사카매출URL" target="_blank" class="link-btn col-blue">
-                    <span>오사카 매출현황</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-                <a href="규슈매출URL" target="_blank" class="link-btn col-green">
-                    <span>규슈 매출현황</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-                <a href="동경매출URL" target="_blank" class="link-btn col-purple">
-                    <span>동경 매출현황</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
+                <a href="오사카매출URL" target="_blank" class="link-btn col-blue"><span>오사카 매출현황</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="규슈매출URL" target="_blank" class="link-btn col-green"><span>규슈 매출현황</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="동경매출URL" target="_blank" class="link-btn col-purple"><span>동경 매출현황</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
         </div>
 
         <div class="card">
             <h2><i class="fa-solid fa-calendar-check"></i> 2. 근무현황</h2>
             <div class="btn-grid">
-                <a href="오사카근무URL" target="_blank" class="link-btn col-blue">
-                    <span>오사카 근무현황</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-                <a href="규슈근무URL" target="_blank" class="link-btn col-green">
-                    <span>규슈 근무현황</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
+                <a href="오사카근무URL" target="_blank" class="link-btn col-blue"><span>오사카 근무현황</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="규슈근무URL" target="_blank" class="link-btn col-green"><span>규슈 근무현황</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
         </div>
 
         <div class="card">
             <h2><i class="fa-solid fa-hand-holding-dollar"></i> 3. 인센현황</h2>
             <div class="btn-grid">
-                <a href="https://docs.google.com/spreadsheets/d/11giEDLNFNJe0ME6czK0yY7HAwgjOKxJJ/edit?pli=1&gid=331033276#gid=331033276" target="_blank" class="link-btn col-blue">
-                    <span>이트래블 인센현황</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-                <a href="https://docs.google.com/spreadsheets/d/1sSXt8YckniAcmtDG0-QT_UdWWiuxx8Am/edit?pli=1&gid=1695092935#gid=1695092935" target="_blank" class="link-btn col-green">
-                    <span>그외 인센현황</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-                <a href="https://docs.google.com/spreadsheets/d/1Ki1LMopEr8V8Jya6NmzZGpKLHHy3Hp1u/edit?gid=483904815#gid=483904815" target="_blank" class="link-btn col-purple">
-                    <span>한국지사 인센현황</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
+                <a href="https://docs.google.com/spreadsheets/d/11giEDLNFNJe0ME6czK0yY7HAwgjOKxJJ/edit?pli=1&gid=331033276#gid=331033276" target="_blank" class="link-btn col-blue"><span>이트래블 인센현황</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="https://docs.google.com/spreadsheets/d/1sSXt8YckniAcmtDG0-QT_UdWWiuxx8Am/edit?pli=1&gid=1695092935#gid=1695092935" target="_blank" class="link-btn col-green"><span>그외 인센현황</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                <a href="https://docs.google.com/spreadsheets/d/1Ki1LMopEr8V8Jya6NmzZGpKLHHy3Hp1u/edit?gid=483904815#gid=483904815" target="_blank" class="link-btn col-purple"><span>한국지사 인센현황</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
             </div>
         </div>
+
     </div>
 
     <div class="card">
         <h2><i class="fa-solid fa-hotel"></i> 4. 호텔블록현황</h2>
+
         <div class="hotel-grid">
-            <a href="https://docs.google.com/spreadsheets/d/1o_oRouHav0Z5aMKWmgZBovg-KLZufQam8SzaR_JljR0/edit?gid=1597431311#gid=1597431311" target="_blank" class="link-btn hotel-top">
-                <span>히노데호텔</span>
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
-            <a href="https://docs.google.com/spreadsheets/d/1aflBDQqYBDW4SIWOrfquTUnRNceHQh8C/edit?rtpof=true&gid=1347907107#gid=1347907107" target="_blank" class="link-btn hotel-top">
-                <span>WBF남바모토마치</span>
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
-            <a href="https://docs.google.com/spreadsheets/d/1ENafFWMF2M8Cw3YRxgwRAxuNxh1FEQ6gJeniyNZo1mI/edit?gid=479650170#gid=479650170" target="_blank" class="link-btn hotel-top">
-                <span>센타라라이프호텔</span>
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
-            <a href="https://docs.google.com/spreadsheets/d/1PAiYsE1vC2Vf-wJ0rYem2RJnfaFM-D4s_93SvcYRhWo/edit?gid=619011903#gid=619011903" target="_blank" class="link-btn hotel-bottom">
-                <span>비스윗호텔남바</span>
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
-            <a href="https://docs.google.com/spreadsheets/d/1b7SUn0lInIy6VZsfdi-nZ0sIqM5iiqF4/edit?gid=1298837714#gid=1298837714" target="_blank" class="link-btn hotel-bottom">
-                <span>오사카바인호텔</span>
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
-            <a href="https://docs.google.com/spreadsheets/d/1cR2hLm6s0SmuADPTYo2jzpWLWbV0Io7C/edit?gid=205860888#gid=205860888" target="_blank" class="link-btn hotel-bottom">
-                <span>아마네크호텔남바</span>
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-            </a>
+            <a href="https://docs.google.com/spreadsheets/d/1o_oRouHav0Z5aMKWmgZBovg-KLZufQam8SzaR_JljR0/edit?gid=1597431311#gid=1597431311" target="_blank" class="link-btn hotel-top"><span>히노데호텔</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="https://docs.google.com/spreadsheets/d/1aflBDQqYBDW4SIWOrfquTUnRNceHQh8C/edit?rtpof=true&gid=1347907107#gid=1347907107" target="_blank" class="link-btn hotel-top"><span>WBF남바모토마치</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="https://docs.google.com/spreadsheets/d/1ENafFWMF2M8Cw3YRxgwRAxuNxh1FEQ6gJeniyNZo1mI/edit?gid=479650170#gid=479650170" target="_blank" class="link-btn hotel-top"><span>센타라라이프호텔</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+
+            <a href="https://docs.google.com/spreadsheets/d/1PAiYsE1vC2Vf-wJ0rYem2RJnfaFM-D4s_93SvcYRhWo/edit?gid=619011903#gid=619011903" target="_blank" class="link-btn hotel-bottom"><span>비스윗호텔남바</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="https://docs.google.com/spreadsheets/d/1b7SUn0lInIy6VZsfdi-nZ0sIqM5iiqF4/edit?gid=1298837714#gid=1298837714" target="_blank" class="link-btn hotel-bottom"><span>오사카바인호텔</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <a href="https://docs.google.com/spreadsheets/d/1cR2hLm6s0SmuADPTYo2jzpWLWbV0Io7C/edit?gid=205860888#gid=205860888" target="_blank" class="link-btn hotel-bottom"><span>아마네크호텔남바</span><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
         </div>
     </div>
+
 </div>
 
 </body>
